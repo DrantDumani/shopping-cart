@@ -6,11 +6,11 @@ import ShoppingKart from "./ShoppingKart";
 import Shop from "./Shop";
 
 function App() {
-  const [kartItems, setKartItems] = useState(0);
+  const [itemAmount, setItemAMount] = useState(0);
 
   return (
     <BrowserRouter>
-      <Navbar items={kartItems} />
+      <Navbar items={itemAmount} />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/shop" element={<Shop />} />
