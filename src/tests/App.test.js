@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import App from "../App";
 
 describe("site navigation", () => {
-  it("can navigate the site by clicking links", () => {
+  it("can navigate the site by clicking links in navbar", () => {
     render(
       <MemoryRouter>
         <App />
@@ -34,6 +34,60 @@ describe("site navigation", () => {
     expect(screen.getByRole("heading", { name: homeStr })).toBeInTheDocument();
     expect(cartHeader).not.toBeInTheDocument();
   });
+
+  it("can navigate to an item page by clicking a link on the shop page", () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const shopLink = screen.getByRole("link", { name: "Shop" });
+    userEvent.click(shopLink);
+    const itemLink = screen.getAllByRole("link", { name: "item-link" });
+    userEvent.click(itemLink[0]);
+    expect(
+      screen.getByRole("link", { name: "Add to Cart" })
+    ).toBeInTheDocument();
+  });
+
+  it("navigates to the shopping kart after clicking the 'Add to Cart' link'", () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const shopLink = screen.getByRole("link", { name: "Shop" });
+    userEvent.click(shopLink);
+
+    const itemLink = screen.getAllByRole("link", { name: "item-link" });
+    userEvent.click(itemLink[0]);
+
+    const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+    userEvent.click(addToCart);
+
+    expect(
+      screen.getByRole("heading", { name: /Your items/i })
+    ).toBeInTheDocument();
+  });
+
+  it("can navigate from link on homepage to shop page", () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const homeShopLink = screen.getByRole("link", {
+      name: "Ready to become a part of something bigger than yourself?",
+    });
+    userEvent.click(homeShopLink);
+
+    const shopHeader = screen.getByRole("heading", { name: "Spend money" });
+    expect(shopHeader).toBeInTheDocument();
+    expect(homeShopLink).not.toBeInTheDocument();
+  });
 });
 
 //currently performing this test by rendering the app and using it the way a user would
@@ -48,13 +102,13 @@ describe("site navigation", () => {
 //     </MemoryRouter>
 //   );
 //   const cartAmount = screen.getByTestId("total-item-amount");
-//   expect(cartAmount.textContent).toBe("0");
+//   expect(cartAmount.textContent).toBe("1");
 
 //   const shopLink = screen.getByRole("link", { name: "Shop" });
 //   userEvent.click(shopLink);
 
 //   const itemLink = screen.getAllByRole("link", { name: "item-link" });
-//   userEvent.click(itemLink);
+//   userEvent.click(itemLink[0]);
 
 //   const amountInputField = screen.getByLabelText("Quantity");
 //   userEvent.type(amountInputField, "10");
