@@ -9,7 +9,7 @@ function Item({ clickHandler, changeHandler, incHandler, decHandler }) {
       <input type="number" id="item-amount" onChange={changeHandler} />
       <button onClick={incHandler}>+</button>
       <button onClick={decHandler}>-</button>
-      <Link path="" onClick={clickHandler}>
+      <Link to="/cart" onClick={clickHandler}>
         Add to Cart
       </Link>
     </div>
