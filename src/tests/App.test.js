@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
+import { act } from "react-dom/test-utils";
 
 describe("site navigation", () => {
   it("can navigate the site by clicking links in navbar", () => {
@@ -89,6 +90,63 @@ describe("site navigation", () => {
     expect(homeShopLink).not.toBeInTheDocument();
   });
 });
+
+it("displays purchased items on the shopping cart page", () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+
+  const shopLink = screen.getByRole("link", { name: "Shop" });
+  userEvent.click(shopLink);
+
+  const itemLink = screen.getAllByRole("link", { name: "item-link" });
+  userEvent.click(itemLink[0]);
+
+  const price = screen.getByTestId("item-price").textContent;
+  const name = screen.getByTestId("item-name").textContent;
+  const quantity = screen.getByLabelText(/quantity/i).value;
+
+  const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+  userEvent.click(addToCart);
+
+  expect(screen.getByText(name)).toBeInTheDocument();
+  expect(screen.getByText(price)).toBeInTheDocument();
+  expect(screen.getByLabelText(/quantity/i).value).toBe(quantity);
+});
+
+it("increases the quantity of an item in a user's cart instead of adding a duplicate entry", () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+
+  const shopLink = screen.getByRole("link", { name: "Shop" });
+  userEvent.click(shopLink);
+
+  const itemLink = screen.getAllByRole("link", { name: "item-link" });
+  userEvent.click(itemLink[0]);
+
+  const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+  userEvent.click(addToCart);
+
+  userEvent.click(shopLink);
+  userEvent.click(screen.getAllByRole("link", { name: "item-link" })[0]);
+  userEvent.click(screen.getByRole("link", { name: "Add to Cart" }));
+
+  const quantityFields = screen.getAllByLabelText(/quantity/i);
+  expect(quantityFields.length).toBe(1);
+  expect(quantityFields[0].value).toBe("2");
+});
+
+//yeah...at this point, you should do the test for adding items to the shopping kart
+//use a describe block for two tests. One test would be for adding items to the cart
+//the other would be for displaying the correct amount of items that are in the kart in the navbar
+//that amount only gets updated when clicking the "add to cart" button
+//for adding items to the kart, just check to see if the item name can be found in the cart
+//for example, buying an item named "radio" should allow you to see the raio in the shopping cart
 
 //currently performing this test by rendering the app and using it the way a user would
 //while checking to make sure the value displayed in the nav bar is correct
