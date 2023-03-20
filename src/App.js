@@ -9,6 +9,22 @@ import images from "./images";
 
 function App() {
   const [itemAmount, setItemAMount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToKart = (num, itemObj) => {
+    // if the item is already in the kart, increase its quantity by the quantity instead
+    const inCart = cartItems.findIndex((item) => item.id === itemObj.id);
+    if (inCart !== -1) {
+      const updatedCart = [...cartItems];
+      updatedCart[inCart].quantity += num;
+      return;
+    }
+    const pushToKart = { ...itemObj, quantity: num };
+    setCartItems((currentCart) => {
+      return [...currentCart, pushToKart];
+    });
+    console.log(cartItems);
+  };
 
   const itemDB = [
     {
@@ -27,8 +43,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/shop" element={<Shop db={itemDB} />} />
-        <Route path="/shop/:itemId" element={<Item />} />
-        <Route path="/cart" element={<ShoppingKart />} />
+        <Route
+          path="/shop/:itemId"
+          element={<Item db={itemDB} clickHandler={addToKart} />}
+        />
+        <Route path="/cart" element={<ShoppingKart itemList={cartItems} />} />
       </Routes>
     </>
   );
