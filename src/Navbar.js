@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
-function Navbar({ items }) {
+function Navbar({ itemTotal }) {
   return (
     <nav>
       <ul>
@@ -12,7 +12,10 @@ function Navbar({ items }) {
           <Link to="shop">Shop</Link>
         </li>
         <li>
-          <Link to="cart">Shopping Cart: {items}</Link>
+          <Link to="cart">
+            Shopping Cart:
+            <span data-testid="total-item-amount">{itemTotal}</span>
+          </Link>
         </li>
       </ul>
     </nav>
