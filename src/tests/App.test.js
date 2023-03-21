@@ -400,28 +400,3 @@ it("renders the total price of all items in shopping cart", () => {
   const subTotal = screen.getByTestId("sub-total");
   expect(subTotal.textContent).toBe(finalPrice);
 });
-
-//currently performing this test by rendering the app and using it the way a user would
-//while checking to make sure the value displayed in the nav bar is correct
-//this involves navigating to the shop page and testing
-//SEPARATE THE FGOLLOWING TEST INTO TESTING THE INPUT FIELD AND THEN THE INCREMENT / DECREMENT BUTTONS
-// ***YOU SHOULD ALSO TEST THE INDIVIDUAL COMPONENT AND SEE IF IT FUNCTIONS PROPERLY
-// it("renders the amount of items in a user's shopping kart in the navbar", () => {
-//   render(
-//     <MemoryRouter>
-//       <App />
-//     </MemoryRouter>
-//   );
-//   const cartAmount = screen.getByTestId("total-item-amount");
-//   expect(cartAmount.textContent).toBe("1");
-
-//   const shopLink = screen.getByRole("link", { name: "Shop" });
-//   userEvent.click(shopLink);
-
-//   const itemLink = screen.getAllByRole("link", { name: "item-link" });
-//   userEvent.click(itemLink[0]);
-
-//   const amountInputField = screen.getByLabelText("Quantity");
-//   userEvent.type(amountInputField, "10");
-//   expect(cartAmount.textContent).toBe("10");
-// });

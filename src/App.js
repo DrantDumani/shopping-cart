@@ -8,16 +8,11 @@ import Item from "./Item";
 import images from "./images";
 
 function App() {
-  const [cartTotal, setcartTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [currentItem, setCurrentItem] = useState({
     id: "placeholder",
     quantity: 1,
   });
-
-  // useEffect(() => {
-  //   setcartTotal(cartItems.reduce((acc, el) => acc + el.quantity));
-  // }, [cartItems]);
 
   const displayCurrentItem = (id) => {
     setCurrentItem({ ...itemDB.find((item) => item.id === id), quantity: 1 });
@@ -56,13 +51,7 @@ function App() {
       });
       validateCartMaxQuantity(currentItem);
     } else if (value === "") {
-      // setCartItems((cart) => {
       deleteCartItem(currentItem);
-      // const index = cartItems.findIndex((item) => item.id === currentItem.id);
-      // const updatedCart = [...cart];
-      // updatedCart[index] = { ...currentItem, quantity: 0 };
-      // return updatedCart;
-      // });
     }
   };
 
@@ -103,7 +92,6 @@ function App() {
           quantity: currentItem.quantity - 1,
         };
       } else {
-        // updatedCart[index] = { ...currentItem, quantity: 0 };
         deleteCartItem(currentItem);
       }
       return updatedCart;
