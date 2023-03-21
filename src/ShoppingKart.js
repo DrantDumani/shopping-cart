@@ -1,4 +1,10 @@
-function ShoppingKart({ itemList, changeHandler, incHandler, decHandler }) {
+function ShoppingKart({
+  itemList,
+  changeHandler,
+  incHandler,
+  decHandler,
+  removeItem,
+}) {
   return (
     <div>
       <h1>Your items</h1>
