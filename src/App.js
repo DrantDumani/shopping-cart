@@ -20,7 +20,9 @@ function App() {
   };
 
   const deleteCartItem = (item) => {
-    setCartItems((cart) => cart.filter((el) => el.id !== item.id));
+    setCartItems((cart) => {
+      return cart.filter((el) => el.id !== item.id);
+    });
   };
 
   const changeHandler = (event) => {
@@ -41,8 +43,7 @@ function App() {
     const { value } = event.target;
     if (value === "0") {
       deleteCartItem(currentItem);
-    }
-    if (!/\D/g.test(value) && value.length > 0) {
+    } else if (!/\D/g.test(value) && value.length > 0) {
       setCartItems((cart) => {
         const index = cartItems.findIndex((item) => item.id === currentItem.id);
         const updatedCart = [...cart];
@@ -51,13 +52,13 @@ function App() {
       });
       validateCartMaxQuantity(currentItem);
     } else if (value === "") {
-      setCartItems((cart) => {
-        deleteCartItem(currentItem);
-        // const index = cartItems.findIndex((item) => item.id === currentItem.id);
-        // const updatedCart = [...cart];
-        // updatedCart[index] = { ...currentItem, quantity: 0 };
-        // return updatedCart;
-      });
+      // setCartItems((cart) => {
+      deleteCartItem(currentItem);
+      // const index = cartItems.findIndex((item) => item.id === currentItem.id);
+      // const updatedCart = [...cart];
+      // updatedCart[index] = { ...currentItem, quantity: 0 };
+      // return updatedCart;
+      // });
     }
   };
 

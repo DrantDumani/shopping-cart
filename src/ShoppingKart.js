@@ -38,6 +38,7 @@ function ShoppingKart({
               >
                 -
               </button>
+              <button onClick={() => removeItem(item)}>Delete</button>
             </div>
           );
         })}
