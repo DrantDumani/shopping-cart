@@ -169,6 +169,148 @@ it("updates the numerical value of the quantity field when user types in a numbe
   expect(cartPageQuantity.value).toBe("12");
 });
 
+describe("increment and decrement buttons on item and cart pages", () => {
+  it("increases value of quantity field by one when clicked", () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const shopLink = screen.getByRole("link", { name: "Shop" });
+    userEvent.click(shopLink);
+
+    const itemLink = screen.getAllByRole("link", { name: "item-link" });
+    userEvent.click(itemLink[0]);
+
+    const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+    const quantity = screen.getByLabelText(/quantity/i);
+    const incBtn = screen.getByRole("button", { name: "+" });
+
+    userEvent.click(incBtn);
+    userEvent.click(incBtn);
+    expect(quantity.value).toBe("3");
+
+    userEvent.click(addToCart);
+    const cartIncBtns = screen.getAllByRole("button", { name: "+" });
+    const cartPageQuantity = screen.getAllByLabelText(/quantity/i)[0];
+    userEvent.click(cartIncBtns[0]);
+
+    expect(cartPageQuantity.value).toBe("4");
+  });
+
+  it("decreases value of quantity field by one when clicked", () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const shopLink = screen.getByRole("link", { name: "Shop" });
+    userEvent.click(shopLink);
+
+    const itemLink = screen.getAllByRole("link", { name: "item-link" });
+    userEvent.click(itemLink[0]);
+
+    const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+    const quantity = screen.getByLabelText(/quantity/i);
+    userEvent.type(quantity, "20");
+
+    const decBtn = screen.getByRole("button", { name: "-" });
+    for (let i = 0; i < 3; i++) {
+      userEvent.click(decBtn);
+    }
+    expect(quantity.value).toBe("117");
+
+    userEvent.click(addToCart);
+    const cartDecBtns = screen.getAllByRole("button", { name: "-" });
+    const cartPageQuantity = screen.getAllByLabelText(/quantity/i)[0];
+
+    userEvent.click(cartDecBtns[0]);
+    expect(cartPageQuantity.value).toBe("116");
+  });
+
+  it("cannot decrease value to number lower than 1 on item page", () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const shopLink = screen.getByRole("link", { name: "Shop" });
+    userEvent.click(shopLink);
+
+    const itemLink = screen.getAllByRole("link", { name: "item-link" });
+    userEvent.click(itemLink[0]);
+
+    const quantity = screen.getByLabelText(/quantity/i);
+    const decBtn = screen.getByRole("button", { name: "-" });
+    for (let i = 0; i < 3; i++) {
+      userEvent.click(decBtn);
+    }
+
+    expect(quantity.value).toBe("1");
+  });
+
+  it("can reduce item quantity to 0 on cart page, removing the item from the cart", () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    const shopLink = screen.getByRole("link", { name: "Shop" });
+    userEvent.click(shopLink);
+
+    const itemLink = screen.getAllByRole("link", { name: "item-link" });
+    userEvent.click(itemLink[0]);
+
+    const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+    userEvent.click(addToCart);
+
+    const cartDecBtn = screen.getAllByRole("button", { name: "-" })[0];
+    userEvent.click(cartDecBtn);
+
+    expect(cartDecBtn).not.toBeInTheDocument();
+  });
+
+  it("correctly operates on numerical value in quantity field", () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    const shopLink = screen.getByRole("link", { name: "Shop" });
+    userEvent.click(shopLink);
+
+    const itemLink = screen.getAllByRole("link", { name: "item-link" });
+    userEvent.click(itemLink[0]);
+
+    const quantity = screen.getByLabelText(/quantity/i);
+    const incBtn = screen.getByRole("button", { name: "+" });
+    const decBtn = screen.getByRole("button", { name: "-" });
+
+    const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+
+    userEvent.type(quantity, "2");
+    userEvent.click(incBtn);
+    userEvent.click(incBtn);
+    userEvent.click(decBtn);
+    expect(quantity.value).toBe("13");
+
+    userEvent.click(addToCart);
+    const cartIncBtns = screen.getAllByRole("button", { name: "+" });
+    const cartDecBtns = screen.getAllByRole("button", { name: "-" });
+    const cartPageQuantity = screen.getAllByLabelText(/quantity/i)[0];
+
+    userEvent.type(cartPageQuantity, "3");
+    userEvent.click(cartDecBtns[0]);
+    userEvent.click(cartDecBtns[0]);
+    userEvent.click(cartIncBtns[0]);
+
+    expect(cartPageQuantity.value).toBe("132");
+  });
+});
+
 //yeah...at this point, you should do the test for adding items to the shopping kart
 //use a describe block for two tests. One test would be for adding items to the cart
 //the other would be for displaying the correct amount of items that are in the kart in the navbar
