@@ -3,7 +3,6 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
-import { act } from "react-dom/test-utils";
 
 describe("site navigation", () => {
   it("can navigate the site by clicking links in navbar", () => {
@@ -169,6 +168,28 @@ it("updates the numerical value of the quantity field when user types in a numbe
   expect(cartPageQuantity.value).toBe("12");
 });
 
+it("removes item from the cart if value on cart page becomes 0", () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+
+  const shopLink = screen.getByRole("link", { name: "Shop" });
+  userEvent.click(shopLink);
+
+  const itemLink = screen.getAllByRole("link", { name: "item-link" });
+  userEvent.click(itemLink[0]);
+
+  const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+  userEvent.click(addToCart);
+
+  const cartPageQuantity = screen.getAllByLabelText(/quantity/i)[0];
+  userEvent.type(cartPageQuantity, "{backspace}");
+
+  expect(cartPageQuantity).not.toBeInTheDocument();
+});
+
 describe("increment and decrement buttons on item and cart pages", () => {
   it("increases value of quantity field by one when clicked", () => {
     render(
@@ -311,12 +332,26 @@ describe("increment and decrement buttons on item and cart pages", () => {
   });
 });
 
-//yeah...at this point, you should do the test for adding items to the shopping kart
-//use a describe block for two tests. One test would be for adding items to the cart
-//the other would be for displaying the correct amount of items that are in the kart in the navbar
-//that amount only gets updated when clicking the "add to cart" button
-//for adding items to the kart, just check to see if the item name can be found in the cart
-//for example, buying an item named "radio" should allow you to see the raio in the shopping cart
+it("deletes an item from the cart when the delete button is clicked", () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+  const shopLink = screen.getByRole("link", { name: "Shop" });
+  userEvent.click(shopLink);
+
+  const itemLink = screen.getAllByRole("link", { name: "item-link" });
+  userEvent.click(itemLink[0]);
+
+  const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+  userEvent.click(addToCart);
+
+  const delBtn = screen.getAllByRole("button", { name: /delete/i })[0];
+  userEvent.click(delBtn);
+
+  expect(delBtn).not.toBeInTheDocument();
+});
 
 //currently performing this test by rendering the app and using it the way a user would
 //while checking to make sure the value displayed in the nav bar is correct
