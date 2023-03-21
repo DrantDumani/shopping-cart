@@ -103,7 +103,6 @@ it("displays purchased items on the shopping cart page", () => {
   const itemLink = screen.getAllByRole("link", { name: "item-link" });
   userEvent.click(itemLink[0]);
 
-  const price = screen.getByTestId("item-price").textContent;
   const name = screen.getByTestId("item-name").textContent;
   const quantity = screen.getByLabelText(/quantity/i).value;
 
@@ -111,7 +110,6 @@ it("displays purchased items on the shopping cart page", () => {
   userEvent.click(addToCart);
 
   expect(screen.getByText(name)).toBeInTheDocument();
-  expect(screen.getByText(price)).toBeInTheDocument();
   expect(screen.getByLabelText(/quantity/i).value).toBe(quantity);
 });
 
@@ -351,6 +349,56 @@ it("deletes an item from the cart when the delete button is clicked", () => {
   userEvent.click(delBtn);
 
   expect(delBtn).not.toBeInTheDocument();
+});
+
+it("renders the amount of items in a user's cart in the navbar", () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+
+  const cartAmount = screen.getByTestId("total-item-amount");
+  expect(cartAmount.textContent).toBe("0");
+
+  const shopLink = screen.getByRole("link", { name: "Shop" });
+  userEvent.click(shopLink);
+
+  const itemLink = screen.getAllByRole("link", { name: "item-link" });
+  userEvent.click(itemLink[0]);
+
+  const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+  userEvent.click(addToCart);
+
+  expect(cartAmount.textContent).toBe("1");
+});
+
+it("renders the total price of all items in shopping cart", () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+
+  const cartAmount = screen.getByTestId("total-item-amount");
+  expect(cartAmount.textContent).toBe("0");
+
+  const shopLink = screen.getByRole("link", { name: "Shop" });
+  userEvent.click(shopLink);
+
+  const itemLink = screen.getAllByRole("link", { name: "item-link" });
+  userEvent.click(itemLink[0]);
+
+  const price = screen.getAllByTestId("item-price")[0].textContent;
+  const finalPrice = (price * 2).toString();
+  const incBtn = screen.getAllByRole("button", { name: "+" })[0];
+  userEvent.click(incBtn);
+
+  const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+  userEvent.click(addToCart);
+
+  const subTotal = screen.getByTestId("sub-total");
+  expect(subTotal.textContent).toBe(finalPrice);
 });
 
 //currently performing this test by rendering the app and using it the way a user would

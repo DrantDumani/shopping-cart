@@ -4,6 +4,7 @@ function ShoppingKart({
   incHandler,
   decHandler,
   removeItem,
+  subTotal,
 }) {
   return (
     <div>
@@ -43,6 +44,12 @@ function ShoppingKart({
           );
         })}
       </div>
+      <div className="sub-total-container">
+        <span>
+          Subtotal: <span data-testid="sub-total">{subTotal}</span>
+        </span>
+      </div>
+      <button>Checkout</button>
     </div>
   );
 }

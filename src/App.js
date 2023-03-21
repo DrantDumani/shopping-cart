@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Homepage from "./Homepage";
 import ShoppingKart from "./ShoppingKart";
@@ -8,12 +8,16 @@ import Item from "./Item";
 import images from "./images";
 
 function App() {
-  const [itemAmount, setItemAMount] = useState(0);
+  const [cartTotal, setcartTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [currentItem, setCurrentItem] = useState({
     id: "placeholder",
     quantity: 1,
   });
+
+  // useEffect(() => {
+  //   setcartTotal(cartItems.reduce((acc, el) => acc + el.quantity));
+  // }, [cartItems]);
 
   const displayCurrentItem = (id) => {
     setCurrentItem({ ...itemDB.find((item) => item.id === id), quantity: 1 });
@@ -143,17 +147,25 @@ function App() {
   const itemDB = [
     {
       name: "Crab Tank",
-      price: 21000,
+      price: 2100,
       imgLink: images.crabTank,
       descImg: images.descCrabTank,
       description: "Lorem Ipsum",
       id: "CrabTank",
     },
+    {
+      name: "Wave Breaker",
+      price: 1900,
+      imgLink: images.waveBreaker,
+      descImg: images.descWaveBreaker,
+      description: "Lorem Ipsum",
+      id: "WaveBreaker",
+    },
   ];
 
   return (
     <>
-      <Navbar items={itemAmount} />
+      <Navbar itemTotal={cartItems.reduce((acc, el) => acc + el.quantity, 0)} />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/shop" element={<Shop db={itemDB} />} />
@@ -179,6 +191,10 @@ function App() {
               incHandler={cartIncHandler}
               decHandler={cartDecHandler}
               removeItem={deleteCartItem}
+              subTotal={cartItems.reduce(
+                (acc, el) => acc + el.price * el.quantity,
+                0
+              )}
             />
           }
         />
