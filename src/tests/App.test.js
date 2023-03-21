@@ -141,6 +141,34 @@ it("increases the quantity of an item in a user's cart instead of adding a dupli
   expect(quantityFields[0].value).toBe("2");
 });
 
+it("updates the numerical value of the quantity field when user types in a number and cannot accept more than 3 digits", () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+
+  const shopLink = screen.getByRole("link", { name: "Shop" });
+  userEvent.click(shopLink);
+
+  const itemLink = screen.getAllByRole("link", { name: "item-link" });
+  userEvent.click(itemLink[0]);
+
+  const addToCart = screen.getByRole("link", { name: "Add to Cart" });
+
+  const quantity = screen.getByLabelText(/quantity/i);
+  expect(quantity.value).toBe("1");
+  userEvent.type(quantity, "2S39");
+
+  expect(quantity.value).toBe("123");
+
+  userEvent.click(addToCart);
+  const cartPageQuantity = screen.getAllByLabelText(/quantity/i)[0];
+  userEvent.type(cartPageQuantity, "9{backspace}");
+
+  expect(cartPageQuantity.value).toBe("12");
+});
+
 //yeah...at this point, you should do the test for adding items to the shopping kart
 //use a describe block for two tests. One test would be for adding items to the cart
 //the other would be for displaying the correct amount of items that are in the kart in the navbar
