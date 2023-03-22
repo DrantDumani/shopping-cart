@@ -6,7 +6,7 @@ function Navbar({ itemTotal }) {
     <nav className="nav-bar">
       <ul className="nav-options">
         <li>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to="/shopping-cart">
             Grizzco
           </Link>
         </li>
