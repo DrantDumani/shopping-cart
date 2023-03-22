@@ -5,6 +5,7 @@ import Homepage from "./Homepage";
 import ShoppingCart from "./ShoppingCart";
 import Shop from "./Shop";
 import Item from "./Item";
+import Footer from "./Footer";
 import images from "./images";
 import "./stylesheets/App.css";
 
@@ -144,12 +145,49 @@ function App() {
       id: "CrabTank",
     },
     {
+      name: "Reef Slider",
+      price: 2600,
+      imgLink: images.reefSlider,
+      descImg: images.descReefSlider,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      id: "Reef Slider",
+    },
+    {
+      name: "Inkjet",
+      price: 2200,
+      imgLink: images.inkjet,
+      descImg: images.descInkjet,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      id: "Inkjet",
+    },
+    {
+      name: "Trizooka",
+      price: 3333,
+      imgLink: images.trizooka,
+      descImg: images.descTrizooka,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      id: "Trizooka",
+    },
+    {
       name: "Wave Breaker",
       price: 1900,
       imgLink: images.waveBreaker,
       descImg: images.descWaveBreaker,
-      description: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       id: "WaveBreaker",
+    },
+    {
+      name: "Triple Inkstrike",
+      price: 1900,
+      imgLink: images.inkstrike,
+      descImg: images.descInkstrike,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      id: "Inkstrike",
     },
   ];
 
@@ -189,6 +227,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </>
   );
 }
