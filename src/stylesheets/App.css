@@ -50,7 +50,8 @@ body {
 .homepage,
 .shopPage,
 .item-page,
-.cart-page {
+.cart-page,
+.empty-cart {
   padding: 2em var(--horizontalPad);
   min-height: 100vh;
 }
@@ -59,6 +60,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 8vh 0;
   font-size: 1.5em;
   flex: 1;
   background-color: rgba(242, 82, 2, 0.749);
@@ -76,6 +78,11 @@ body {
   font-size: 2em;
 }
 
+.page-title,
+.homepage-desc {
+  line-height: 1;
+}
+
 .link-btn {
   text-decoration: none;
   color: #004b29;
@@ -91,7 +98,8 @@ body {
 
 .shopPage,
 .item-page,
-.cart-page {
+.cart-page,
+.empty-cart {
   background-color: #f25202;
 }
 
@@ -231,4 +239,12 @@ body {
 .github-link {
   text-decoration: none;
   color: inherit;
+}
+
+.empty-cart {
+  text-align: center;
+}
+
+.empty-cart-text {
+  font-size: 40px;
 }

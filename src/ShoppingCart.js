@@ -6,7 +6,13 @@ function ShoppingCart({
   removeItem,
   subTotal,
 }) {
-  return (
+  return subTotal === 0 ? (
+    <div className="empty-cart">
+      <h1 className="empty-cart-text">
+        Your cart is empty! Visit the shop and view our products!
+      </h1>
+    </div>
+  ) : (
     <div className="cart-page">
       <h1>Your items</h1>
       <div className="cart-list">
