@@ -195,7 +195,7 @@ function App() {
     <>
       <Navbar itemTotal={cartItems.reduce((acc, el) => acc + el.quantity, 0)} />
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/shopping-cart" element={<Homepage />} />
         <Route path="/shop" element={<Shop db={itemDB} />} />
         <Route
           path="/shop/:itemId"
