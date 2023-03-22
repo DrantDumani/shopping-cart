@@ -1,0 +1,222 @@
+@font-face {
+  font-family: "Splatoon";
+  src: url("../fonts/Splatoon2.otf") format("opentype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --pagePad: 0 3vw;
+  --horizontalPad: 3vw;
+}
+
+html,
+body {
+  font-family: "Splatoon";
+  margin: 0;
+  background: url(../assets/salmon-run.jpg) no-repeat center center fixed;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-bar {
+  background-color: #004b29;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  border-bottom: 3px solid #000;
+}
+
+.nav-options {
+  padding: var(--pagePad);
+  margin: 0;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.5em;
+}
+
+.homepage,
+.shopPage,
+.item-page,
+.cart-page {
+  padding: 2em var(--horizontalPad) 0 var(--horizontalPad);
+  min-height: 95vh;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5em;
+  flex: 1;
+  background-color: #f25202bf;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 3em;
+  margin-bottom: 0;
+}
+
+.homepage-desc {
+  font-size: 2em;
+}
+
+.link-btn {
+  text-decoration: none;
+  color: #004b29;
+  border: 1.5px solid #000;
+  background-color: #fff;
+  padding: 0.5vh 0.5vw;
+}
+
+.link-btn:hover,
+.styled-btn:hover {
+  background-color: #bebebe;
+}
+
+.shopPage,
+.item-page,
+.cart-page {
+  background-color: #f25202;
+}
+
+.item-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.img-container,
+.kart-img-div {
+  border: 1px solid #004b29;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnail {
+  width: 200px;
+  height: 200px;
+}
+
+.item-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px 72px;
+}
+
+.item-name {
+  font-size: 20px;
+}
+
+.item-price {
+  font-size: 28px;
+}
+
+.item-name,
+.item-price {
+  line-height: 1.05;
+}
+
+.flex-img-desc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vh 5vw;
+}
+
+.item-desc {
+  flex: 1 1 500px;
+}
+
+.desc-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 220px;
+}
+
+.desc-img {
+  min-width: 350px;
+  max-width: 100%;
+  height: auto;
+}
+
+.item-info-container,
+.cart-card-div {
+  float: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4vw;
+}
+
+.cart-btn {
+  font-size: 20px;
+  margin-top: 0.3vh;
+}
+
+.input-container,
+.cart-input-container {
+  display: flex;
+  gap: 0.5vw;
+}
+
+.styled-btn {
+  border: 2px solid #000;
+  background-color: #fff;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+.item-input {
+  font-size: 16px;
+  font-family: inherit;
+  text-align: center;
+  border: 2px solid #000;
+}
+
+.cart-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cart-list {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.del-btn {
+  font-size: 20px;
+}
+
+.sub-total-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-total {
+  font-size: 28px;
+}
+
+.checkout-btn {
+  font-size: 32px;
+}

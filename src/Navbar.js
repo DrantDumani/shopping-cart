@@ -3,16 +3,20 @@ import React from "react";
 
 function Navbar({ itemTotal }) {
   return (
-    <nav>
-      <ul>
+    <nav className="nav-bar">
+      <ul className="nav-options">
         <li>
-          <Link to="/">Grizzco</Link>
+          <Link className="nav-link" to="/">
+            Grizzco
+          </Link>
         </li>
         <li>
-          <Link to="shop">Shop</Link>
+          <Link className="nav-link" to="shop">
+            Shop
+          </Link>
         </li>
         <li>
-          <Link to="cart">
+          <Link className="nav-link" to="cart">
             Shopping Cart:
             <span data-testid="total-item-amount">{itemTotal}</span>
           </Link>

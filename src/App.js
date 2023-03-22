@@ -1,11 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Navbar from "./Navbar";
 import Homepage from "./Homepage";
-import ShoppingKart from "./ShoppingKart";
+import ShoppingCart from "./ShoppingCart";
 import Shop from "./Shop";
 import Item from "./Item";
 import images from "./images";
+import "./stylesheets/App.css";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -138,7 +139,8 @@ function App() {
       price: 2100,
       imgLink: images.crabTank,
       descImg: images.descCrabTank,
-      description: "Lorem Ipsum",
+      description:
+        "The latest in cutting edge crustacean technology. The crab tank comes equipped with long ranged turrets and air cooled bomb launchers. The perfect option for stopping invaders.",
       id: "CrabTank",
     },
     {
@@ -173,7 +175,7 @@ function App() {
         <Route
           path="/cart"
           element={
-            <ShoppingKart
+            <ShoppingCart
               itemList={cartItems}
               changeHandler={cartChangeHandler}
               incHandler={cartIncHandler}
