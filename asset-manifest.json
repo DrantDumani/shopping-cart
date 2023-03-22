@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/DrantDumani//github.io/shopping-cart/static/css/main.68caa197.css",
+    "main.js": "/DrantDumani//github.io/shopping-cart/static/js/main.cb24c47c.js",
+    "static/media/S3_promo_screenshot_Crab_Tank_03.jpg": "/DrantDumani//github.io/shopping-cart/static/media/S3_promo_screenshot_Crab_Tank_03.7b5c1273c06eaa2ea187.jpg",
+    "static/media/Splatoon2.otf": "/DrantDumani//github.io/shopping-cart/static/media/Splatoon2.63006c9ce63c627f617e.otf",
+    "static/media/salmon-run.jpg": "/DrantDumani//github.io/shopping-cart/static/media/salmon-run.6882d1a6bfe7cfb2e09a.jpg",
+    "static/media/S3_Wave_Breaker_Promotional_3D_Render.jpg": "/DrantDumani//github.io/shopping-cart/static/media/S3_Wave_Breaker_Promotional_3D_Render.ac8a5d5a560d55bb2adf.jpg",
+    "static/media/trizookaDesc.jpg": "/DrantDumani//github.io/shopping-cart/static/media/trizookaDesc.58fb03cfbec71889839f.jpg",
+    "static/media/descInkstrike.jpg": "/DrantDumani//github.io/shopping-cart/static/media/descInkstrike.80f85db0b1d9a8a94336.jpg",
+    "static/media/descInkjet.jpg": "/DrantDumani//github.io/shopping-cart/static/media/descInkjet.ec22d81a06cdf8e8d268.jpg",
+    "static/media/descReefSlider.jpg": "/DrantDumani//github.io/shopping-cart/static/media/descReefSlider.3343b37515742b6c5a67.jpg",
+    "index.html": "/DrantDumani//github.io/shopping-cart/index.html",
+    "main.68caa197.css.map": "/DrantDumani//github.io/shopping-cart/static/css/main.68caa197.css.map",
+    "main.cb24c47c.js.map": "/DrantDumani//github.io/shopping-cart/static/js/main.cb24c47c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.68caa197.css",
+    "static/js/main.cb24c47c.js"
+  ]
+}
