@@ -16,11 +16,10 @@ html,
 body {
   font-family: "Splatoon";
   margin: 0;
-  background: url(../assets/salmon-run.jpg) no-repeat center center fixed;
+  min-height: 100vh;
 }
 
 #root {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -52,8 +51,8 @@ body {
 .shopPage,
 .item-page,
 .cart-page {
-  padding: 2em var(--horizontalPad) 0 var(--horizontalPad);
-  min-height: 95vh;
+  padding: 2em var(--horizontalPad);
+  min-height: 100vh;
 }
 
 .homepage {
@@ -62,8 +61,10 @@ body {
   align-items: center;
   font-size: 1.5em;
   flex: 1;
-  background-color: #f25202bf;
+  background-color: rgba(242, 82, 2, 0.749);
   text-align: center;
+  background: linear-gradient(rgba(242, 82, 2, 0.749), rgba(242, 82, 2, 0.749)),
+    url(../assets/salmon-run.jpg) no-repeat center center fixed;
 }
 
 .page-title {
@@ -219,4 +220,15 @@ body {
 
 .checkout-btn {
   font-size: 32px;
+}
+
+.footer {
+  color: #fff;
+  background-color: #333333;
+  text-align: center;
+}
+
+.github-link {
+  text-decoration: none;
+  color: inherit;
 }
