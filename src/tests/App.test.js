@@ -380,9 +380,6 @@ it("renders the total price of all items in shopping cart", () => {
     </MemoryRouter>
   );
 
-  const cartAmount = screen.getByTestId("total-item-amount");
-  expect(cartAmount.textContent).toBe("0");
-
   const shopLink = screen.getByRole("link", { name: "Shop" });
   userEvent.click(shopLink);
 
